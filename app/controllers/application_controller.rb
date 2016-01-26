@@ -18,4 +18,8 @@ class ApplicationController < ActionController::Base
     redirect_to '/login' unless current_author
   end
 
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
 end

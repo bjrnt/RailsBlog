@@ -11,4 +11,8 @@ RSpec.describe Post, type: :model do
     expect(build(:post, content: nil)).to_not be_valid
     expect(build(:post, category_id: nil)).to_not be_valid
   end
+
+  it 'is valid with an img_url provided' do
+    expect(build(:post, :has_image)).to_not be_invalid
+  end
 end

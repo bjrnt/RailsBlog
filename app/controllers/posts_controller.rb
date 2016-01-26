@@ -11,6 +11,9 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    if !current_author && !@post.is_public then
+      not_found
+    end
   end
 
   def new
