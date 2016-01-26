@@ -23,6 +23,7 @@ class PostsController < ApplicationController
     @post.is_public = params[:is_public]
     @post.author_id = current_author().id
     @post.category_id = params[:category]
+    @post.img_url = params[:img_url]
     if @post.save then
       redirect_to "/posts/#{@post.id}"
     else
@@ -36,7 +37,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(:title => params[:title], :content => params[:content][0], :is_public => !!params[:is_public], :category_id => params[:category].to_i) then
+    if @post.update(:title => params[:title], :content => params[:content][0], :is_public => !!params[:is_public], :category_id => params[:category].to_i, :img_url => params[:img_url]) then
       redirect_to post_path(@post.id)
     else
       redirect_to post_edit_path(@post.id)
