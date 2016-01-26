@@ -1,0 +1,40 @@
+<h3>Edit Post</h3>
+
+<%= form_tag '/posts', method: :patch do %>
+
+  <%= hidden_field_tag :id, @post.id %>
+
+  <div class='form-group'>
+    <%= label_tag(:title, 'Title') %>
+    <%= text_field_tag :title, nil, class: 'form-control', value: @post.title %>
+  </div>
+  <div class='form-group'>
+    <%= label_tag(:content, 'Content') %> <br>
+    <%= text_area :content, nil, rows: 15, class: 'form-control', value: @post.content %>
+  </div>
+  <div class='form-group'>
+    <%= label_tag(:is_public, 'Make post public') %>
+    <%= check_box_tag(:is_public, "#{@post.is_public}", @post.is_public) %>
+  </div>
+  <div class='form-group'>
+    <%= label_tag(:category, 'Post category') %>
+    <%= select_tag(:category, options_for_select(get_categories().collect { |c| [c.title, c.id] }), value: @post.category_id) %>
+  </div>
+  <div class='form-group'>
+    <%= label_tag(:img_url, 'Image URL') %>
+    <%= text_field_tag :img_url, nil, class: 'form-control', value: @post.img_url %>
+  </div>
+  <div class='form-group'>
+    <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+      Edit
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_tag post_path(@post), method: :delete do %>
+  <div class='form-group'>
+    <%= button_tag(type: 'submit', class: 'btn btn-danger') do %>
+      Delete post
+    <% end %>
+  </div>
+<% end %>

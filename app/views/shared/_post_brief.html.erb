@@ -1,0 +1,20 @@
+<div class='row'>
+  <% if post.img_url %>
+  <div class='col-md-1'>
+      <div class='small-img-container'>
+        <%= image_tag post.img_url, class: 'small-img' %>
+      </div>
+  </div>
+  <% end %>
+
+  <div class='col-md-11 post-brief'>
+    <h3><%= link_to post.title, post_path(post) %><% if !post.is_public %><small> Hidden post</small><% end %></h3>
+    Written by <strong><%= post.author.name %></strong> in <strong><%= post.category.title %></strong> on <strong><%= post.created_at.strftime('%Y-%m-%d') %></strong>
+
+    <% if current_author %>
+    <br>
+    <%= link_to "Edit", post_edit_path(post) %>
+    <% end %>
+
+  </div>
+</div>

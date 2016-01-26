@@ -1,0 +1,27 @@
+<h3>New Post</h3>
+
+<%= form_tag '/posts/new' do %>
+
+  <div class='form-group'>
+    <%= label_tag(:title, 'Title:') %>
+    <%= text_field_tag :title, nil, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= label_tag(:content, 'Content:') %> <br>
+    <%= text_area :content, nil, rows: 15, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= label_tag(:is_public, 'Make post public') %>
+    <%= check_box_tag(:is_public) %>
+  </div>
+  <div class='form-group'>
+    <%= label_tag(:category, 'Post category') %>
+    <%= select_tag(:category, options_for_select(get_categories().collect { |c| [c.title, c.id] })) %>
+  </div>
+  <div class='form-group'>
+    <%= button_tag(type: 'submit', class: 'btn btn-primary') do %>
+      Publish
+    <% end %>
+  </div>
+
+<% end %>

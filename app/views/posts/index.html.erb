@@ -1,0 +1,4 @@
+<% @posts.each do |post| %>
+<%= render partial: 'shared/post_brief', locals: {post: post} %>
+<hr>
+<% end %>

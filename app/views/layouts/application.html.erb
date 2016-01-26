@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Bjorn's Blog</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+</head>
+<body>
+
+<div class="container">
+  <br>
+  <nav class='navbar navbar-default'>
+    <div class='container-fluid'>
+      <div class='navbar-header'>
+        <a class='navbar-brand'>Bjorn's Blog</a>
+      </div>
+      <div class='navbar-collapse collapse'>
+        <ul class='nav navbar-nav'>
+          <li>
+            <a href='/'>Home</a>
+          </li>
+          <li class='dropdown'>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <% get_categories().each do |category| %>
+                <li>
+                  <%= link_to category.title, category_path(category) %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+        </ul>
+        <% if current_author %>
+        <ul class='nav navbar-nav navbar-right'>
+          <li>
+            <a href=''>Signed in as <%= current_author.name %></a>
+          </li>
+          <li>
+            <a href='/posts/new'>Write new post</a>
+          </li>
+          <li>
+            <%= link_to 'Logout', '/logout' %>
+          </li>
+        </ul>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+
+  <div class='panel panel-default'>
+    <div class='panel-body'>
+      <%= yield %>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

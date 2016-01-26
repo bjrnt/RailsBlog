@@ -1,0 +1,10 @@
+<div class='row'>
+  <div class='col-md-12'>
+    <h3><%= @category.title %></h3>
+  </div>
+</div>
+<hr>
+<% @posts.each do |post| %>
+<%= render partial: 'shared/post_brief', locals: {post: post} %>
+<hr>
+<% end %>
